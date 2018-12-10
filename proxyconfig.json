@@ -1,0 +1,9 @@
+{
+    "/api":
+    {
+        "target":"https://salesapi.cfapps.io/api",
+        "secure": false,
+        "changeOrigin" : true
+
+    }
+}

@@ -1,0 +1,39 @@
+    <div *ngIf="isLoadingResults">
+     <p>loading...</p>
+    </div>
+ 
+    <form [formGroup]="productForm" (ngSubmit)="onFormSubmit(productForm.value)">
+     
+        <input placeholder="category" formControlName="category"
+                >
+        
+          <!--<span *ngIf="!productForm.get('prod_name').valid && productForm.get('prod_name').touched">Please enter Product Name</span>-->
+        
+      
+      
+        <input placeholder="name" formControlName="name"
+                >
+      
+          <!--<span *ngIf="!productForm.get('prod_desc').valid && productForm.get('prod_desc').touched">Please enter Product Description</span>-->
+      
+      
+      
+        <input placeholder="active" formControlName="active"
+                >
+
+        <input placeholder="price" formControlName="price"
+                >
+
+        <input placeholder="short_description" formControlName="short_description"
+                >
+              
+        <input placeholder="long_description" formControlName="long_description"
+               >
+          <!--<span *ngIf="!productForm.get('prod_price').valid && productForm.get('prod_price').touched">Please enter Product Price</span>-->
+      
+      
+      <div class="button-row">
+        <button type="submit" [disabled]="!productForm.valid">save</button>
+      </div>
+
+    </form>
