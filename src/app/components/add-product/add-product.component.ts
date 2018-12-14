@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
+import { ProductCategory } from 'src/app/models/product-category';
+import { ProductCategoryService } from 'src/app/services/product-category.service';
 
 @Component({
   selector: 'app-add-product',
@@ -15,9 +17,15 @@ export class AddProductComponent implements OnInit {
   product : Product;
   isLoadingResults = false;
 
-  constructor(private router:Router, private productService:ProductService, private formBuilder:FormBuilder) { }
+  productCategories : ProductCategory[];
+    
+
+  selectedFile = null;
+  constructor(private router:Router, private productService:ProductService, private productCategoryService : ProductCategoryService, private formBuilder:FormBuilder) { }
 
   ngOnInit() {
+    this.getProductCategories();
+
     this.productForm = this.formBuilder.group({
       'category':[null,Validators.required],
       'name':[null,Validators.required],
@@ -25,20 +33,42 @@ export class AddProductComponent implements OnInit {
       'price':[null,Validators.required],
       'short_description':[null,Validators.required],
       'long_description':[null,Validators.required],
+      'image':[null,Validators.required],
     });
   }
 
   onFormSubmit(form:NgForm) {
     this.isLoadingResults = true;
-    this.productService.addProduct(form)
+    
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    fd.append('category', form["category"]);
+    fd.append('name', form["name"]);
+    fd.append('price', form["price"]);
+    fd.append('short_description', form["short_description"]);
+    fd.append('long_description', form["long_description"]);
+
+    this.productService.addProduct(fd)
       .subscribe(res => {
-          let id = res['_id'];
           this.isLoadingResults = false;
-          //--this.router.navigate(['/product-details', id]);
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;
         });
   }
+
+  getProductCategories(): void {
+    this.productCategoryService.getProductCategories()
+    .subscribe(data => this.productCategories = data["results"]);
+  }
+
+  
+  onFileSelected(event)
+  {
+    this.selectedFile = <File>event.target.files[0];
+    console.log("selected file " + this.selectedFile);
+  }
+
+
 
 }

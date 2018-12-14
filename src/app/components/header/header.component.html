@@ -6,7 +6,7 @@
                   <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item">
+                  <li *ngIf="isLogin"  class="nav-item">
                     <a class="nav-link" routerLink="/add-product">Upload game</a>
                   </li>
                   <li class="nav-item">
@@ -16,8 +16,9 @@
               </div>
     
         <div class="mr-sm-2 my-lg-0">
-            <button class="btn btn-primary mr-2" routerLink="/login">Login</button>
-            <button class="btn btn-primary"  routerLink="/register">Register</button>
+            <button class="btn btn-secondary mr-2" routerLink="/shopping-cart">Cart 0</button>
+            <button *ngIf="!isLogin" class="btn btn-primary mr-2" routerLink="/login">Login</button>
+            <button *ngIf="!isLogin" class="btn btn-primary"  routerLink="/register">Register</button>
         </div> 
     </nav>
     

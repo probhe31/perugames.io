@@ -28,8 +28,10 @@ export class ProductService {
   }
   
   addProduct (product): Observable<Product> {
-    return this.http.post<Product>(globals.BASE_API_URL+'/products', product, httpOptions).pipe(
-      tap((product: Product) => console.log(`added product w/ id=${product.id}`)),
+    //console.log(image);
+    //product.image = image;
+    return this.http.post<Product>(globals.BASE_API_URL+'/products', product).pipe(
+      tap((product: Product) => console.log('xdxx')),
       catchError(this.handleError<Product>('addProduct'))
     );
   }

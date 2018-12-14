@@ -1,0 +1,110 @@
+<div class="container" *ngIf="!is_confirm_sale">
+		<div class="row justify-content-center align-items-center">     
+
+			<div class="col-2"></div>
+			
+		  <div class="col-8">
+						
+			<div class="mt-5"></div>
+			<h3>Información de envio</h3>
+			<hr/>
+			
+			<form [formGroup]="shippingForm"  (ngSubmit)="onFormSubmit(shippingForm.value)">
+	
+				<div class="form-group">
+					<label for="exampleInputEmail1">Nombre completo*</label>
+					<input type="username" class="form-control" placeholder="Username" formControlName="full_name">
+				</div>      
+	
+				<div class="form-group">
+					<label for="exampleInputEmail1">Correo electrónico</label>
+					<input type="email" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter email"  formControlName="email">          
+				</div> 
+				
+				<div class="form-group">
+					<label for="exampleInputEmail1">Teléfono*</label>
+					<input type="username" class="form-control" placeholder="Username" formControlName="phone">
+							</div>    
+
+				<div class="form-group">
+					<label for="exampleInputEmail1">Dirección*</label>
+					<input type="username" class="form-control" placeholder="Username" formControlName="street">
+				</div>    
+	
+				<div class="form-group">
+					<label for="exampleInputEmail1">Ciudad*</label>
+					<input type="username" class="form-control" placeholder="Username" formControlName="city">
+				</div>  
+							
+
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" formControlName="has_shipping">
+					<label class="form-check-label" for="defaultCheck1">
+							Tiene envio
+					</label>
+				</div>	
+
+			
+			  <button class="btn btn-primary mt-5" routerLink="/shopping-cart">Retroceder</button>
+			  <button type="submit" class="btn btn-primary float-right  mt-5" [disabled]="!shippingForm.valid">Continuar</button>
+			
+			</form>
+		  
+		</div>
+		 
+		<div class="col-2">
+
+			
+
+		</div>
+
+		</div>
+		
+	  </div>
+		
+		
+
+	  <div class="container" *ngIf="is_confirm_sale">
+			<div class="row justify-content-center align-items-center">     
+	
+				
+				
+			  <div class="col">
+							
+				<div class="mt-5"></div>
+				<h3>Información de envio</h3>
+				<hr/>
+				
+				<p class="font-weight-bold">Nombre completo</p>
+				<p>{{confirmSale.full_name}}</p>
+
+				<p class="font-weight-bold">Correo electrónico</p>
+				<p>{{confirmSale.email}}</p>
+
+				<p class="font-weight-bold">Teléfono</p>
+				<p>{{confirmSale.phone}}</p>
+
+
+				<p class="font-weight-bold">Dirección</p>
+				<p>{{confirmSale.street}}</p>
+
+
+				<p class="font-weight-bold">Ciudad</p>
+				<p>{{confirmSale.city}}</p>
+
+
+				<button class="btn btn-primary mt-5" routerLink="/shopping-cart">Retroceder</button>
+				
+				
+			  
+			</div>
+			 
+			<div class="col">
+	
+				<app-shopping-cart-resume [confirm_sale]="confirmSale"></app-shopping-cart-resume>
+	
+			</div>
+	
+			</div>
+			
+		  </div>

@@ -12,6 +12,8 @@ export class HeaderCategoryListComponent implements OnInit {
 
   productCategories : ProductCategory[];
 
+  isLogin = false;
+  
   constructor(private productCategoryService : ProductCategoryService) { }
   
   ngOnInit() {

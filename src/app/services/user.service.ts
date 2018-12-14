@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as globals from '../globals'
 import { catchError, map, tap } from 'rxjs/operators';
+import { UserToken } from '../models/user-token';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,7 +19,7 @@ export class UserService {
 
   addUser(user):Observable<User>
   {
-    return this.http.post<User>(globals.BASE_API_URL+'/register', httpOptions)
+    return this.http.post<User>(globals.BASE_API_URL+'/register', user, httpOptions)
     .pipe(       
       tap((user: User) => console.log(`added product`)),
       catchError(this.handleError<User>('addProduct'))
@@ -34,6 +35,16 @@ export class UserService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+
+  loginUser(user):Observable<UserToken>
+  {
+    return this.http.post<UserToken>(globals.BASE_API_URL+'/login', user, httpOptions)
+    .pipe(       
+      tap((userToken: UserToken) => console.log('login user')),
+      catchError(this.handleError<UserToken>('log user error'))
+    );    
   }
 
 

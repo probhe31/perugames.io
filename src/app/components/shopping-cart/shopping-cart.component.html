@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-2">
+  
+      </div>
+      <div class="col-8">
+          <div class="mt-5"></div>
+        <h3>Carrito de compras de PeruGames.io</h3>
+        <hr/>
+        
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre del producto</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">         </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let orderDetail of cartOrdersDetails">
+                <th scope="row">1</th>
+                <td>{{orderDetail.product_name}}</td>
+                <td>S/. {{orderDetail.unit_price}}</td>
+                <td>{{orderDetail.quantity}}</td>
+                <td>S/. {{orderDetail.total}}</td>
+                <td><button>Quitar</button></td>
+              </tr> 
+              
+              <!--<tr>
+                  <td colspan="4">Subtotal</td>
+                  <td colspan="4">S/. 0.00</td>
+              </tr>  
+              
+              <tr>
+                  <td colspan="4">Total</td>
+                  <td colspan="4">S/. 0.00</td>
+              </tr>-->  
+
+            </tbody>
+          </table>
+
+          <button class="btn btn-primary mt-5" routerLink="/">Continuar comprando</button>                 
+          <button class="btn btn-primary float-right mt-5" routerLink="/shipping-info">Continuar</button>
+
+        
+      </div>
+      <div class="col-2">
+        
+      </div>
+    </div>
+    
+  </div>
+  
