@@ -4,7 +4,7 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 import { UserService } from 'src/app/services/user.service';
 import { UserToken } from 'src/app/models/user-token';
 import { Subscription } from 'rxjs';
-import { OnLoginAnnounceService } from 'src/app/services/onLoginAnnounced.service';
+import { OnLoginAnnounceService } from 'src/app/services/on-login-announced.service';
 
 
 @Component({
@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
 
   subscription: Subscription;
 
-  constructor(private onLoginAnnounceService:OnLoginAnnounceService, private route: ActivatedRoute, private router: Router, private userService : UserService, private formBuilder:FormBuilder) 
+  constructor(private onLoginAnnounceService:OnLoginAnnounceService, 
+    private route: ActivatedRoute, private router: Router, 
+    private userService : UserService, private formBuilder:FormBuilder) 
   {
   
   }
@@ -38,8 +40,10 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(form)
       .subscribe(res => {
           this.userToken = res;
+          console.log("username " + form["username"]);
           localStorage.setItem("token", this.userToken.token);
-          this.onLoginAnnounceService.loginComplete("logeado con exito");
+          localStorage.setItem("nickname", form["username"]);
+          this.onLoginAnnounceService.loginComplete(form["username"]);
           this.router.navigate(['/home']);
 
         }, (err) => {

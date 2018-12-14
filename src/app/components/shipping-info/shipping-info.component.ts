@@ -42,7 +42,8 @@ export class ShippingInfoComponent implements OnInit {
       .subscribe(res => {
         this.confirmSale = res;
         this.is_confirm_sale = true;
-        localStorage.clear();
+        //localStorage.clear();
+        localStorage.removeItem('order_id');
           ///let id = res['_id'];
         }, (err) => {
           console.log(err);

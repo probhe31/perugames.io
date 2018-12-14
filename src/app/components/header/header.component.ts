@@ -7,7 +7,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() nickname:string;
   @Input() isLogin:boolean;
+  @Input() numOrders:boolean;
 
   constructor() { }
 
@@ -16,6 +18,7 @@ export class HeaderComponent implements OnInit {
     if(localStorage.getItem("token")!=null)
     {
       this.isLogin = true;
+      this.nickname = localStorage.getItem("nickname");
     }
   }
 

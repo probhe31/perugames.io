@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { CartOrder } from 'src/app/models/cart-order';
 import { CartService } from 'src/app/services/cart.service';
 import { CartOrders } from 'src/app/models/cart-orders';
+import { OnCartAddedAnnounceService } from 'src/app/services/on-cart-added-announced.service';
 
 @Component({
   selector: 'app-home-product',
@@ -17,7 +18,7 @@ export class HomeProductComponent implements OnInit {
   isLoadingResults = false;
 
 
-  constructor(private cartService:CartService) { }
+  constructor(private cartService:CartService, private onCartAddedAnnounceService: OnCartAddedAnnounceService) { }
 
   ngOnInit() {
     
@@ -48,6 +49,7 @@ export class HomeProductComponent implements OnInit {
 			localStorage.setItem('order_id', this.cartOrder.order);
 			this.cartService.addToCart(this.cartOrder)
 			.subscribe(res => {
+        this.onCartAddedAnnounceService.cardAddComplete("logeado con exito");
 				this.isLoadingResults = false;
 				}, (err) => {
 				console.log(err);
@@ -63,6 +65,7 @@ export class HomeProductComponent implements OnInit {
 		this.cartOrder.order = order_id;
 		this.cartService.addToCart(this.cartOrder)
 		.subscribe(res => {
+      this.onCartAddedAnnounceService.cardAddComplete("logeado con exito");
 			this.isLoadingResults = false;
 			}, (err) => {
 			console.log(err);

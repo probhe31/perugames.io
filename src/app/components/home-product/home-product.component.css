@@ -1,0 +1,11 @@
+.game_price{
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: #49AAF3;
+    color: white;
+   
+}
+
+.game_description{
+    font-size: 14px;
+}

@@ -21,7 +21,8 @@ export class AddProductComponent implements OnInit {
     
 
   selectedFile = null;
-  constructor(private router:Router, private productService:ProductService, private productCategoryService : ProductCategoryService, private formBuilder:FormBuilder) { }
+  constructor(private router:Router, private productService:ProductService, 
+    private productCategoryService : ProductCategoryService, private formBuilder:FormBuilder) { }
 
   ngOnInit() {
     this.getProductCategories();
@@ -51,6 +52,7 @@ export class AddProductComponent implements OnInit {
     this.productService.addProduct(fd)
       .subscribe(res => {
           this.isLoadingResults = false;
+          this.router.navigate(['/home']);
         }, (err) => {
           console.log(err);
           this.isLoadingResults = false;

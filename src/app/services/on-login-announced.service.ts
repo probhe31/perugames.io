@@ -7,7 +7,7 @@ export class OnLoginAnnounceService {
   private onLoginCompleteSource = new Subject<string>();
   loginCompleted$ = this.onLoginCompleteSource.asObservable();
 
-  loginComplete(mission: string) {
-    this.onLoginCompleteSource.next(mission);
+  loginComplete(nickname: string) {
+    this.onLoginCompleteSource.next(nickname);
   }
 }
