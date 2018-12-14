@@ -27,8 +27,17 @@ export class AppComponent {
     onCartAddedAnnounceService.cartAdded$.subscribe(
       astronaut => {
         console.log("evento realizado " + astronaut);
-        this.isLogin = true;       
-        this.numOrders++;
+        this.isLogin = true;      
+        
+        if(astronaut=="clear")
+        {
+          this.numOrders=0;
+        }else
+        {
+          this.numOrders++;
+        }
+          
+
       });
   }
 

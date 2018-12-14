@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ShippingService } from 'src/app/services/shipping.service';
 import { ConfirmSale } from 'src/app/models/confirm-sale';
+import { OnCartAddedAnnounceService } from 'src/app/services/on-cart-added-announced.service';
 
 @Component({
   selector: 'app-shipping-info',
@@ -12,7 +13,7 @@ import { ConfirmSale } from 'src/app/models/confirm-sale';
 export class ShippingInfoComponent implements OnInit {
 
   shippingForm : FormGroup;
-  constructor(private formBuilder:FormBuilder, private shippingService : ShippingService) { }
+  constructor(private formBuilder:FormBuilder, private shippingService : ShippingService, private onCartAddedAnnounceService: OnCartAddedAnnounceService) { }
   is_confirm_sale = false;
   confirmSale : ConfirmSale;
 
@@ -44,6 +45,7 @@ export class ShippingInfoComponent implements OnInit {
         this.is_confirm_sale = true;
         //localStorage.clear();
         localStorage.removeItem('order_id');
+        this.onCartAddedAnnounceService.cardAddComplete("clear");
           ///let id = res['_id'];
         }, (err) => {
           console.log(err);

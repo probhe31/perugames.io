@@ -1,0 +1,6 @@
+---
+applications:
+- name: perugames.io
+  buildpack: staticfile_buildpack
+  memory: 256M
+  instances: 1
